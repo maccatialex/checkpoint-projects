@@ -2,14 +2,14 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
-// Middleware to check working hours (Monday to Friday, 9:00 AM to 5:00 PM)
+//  working hours (Monday to Friday, 9:00 AM to 5:00 PM)
 const checkWorkingHours = (req, res, next) => {
   const currentDay = new Date().getDay(); // 0-6 (0 = Sunday, 6 = Saturday)
   const currentTime = new Date().getHours(); // 0-23
   console.log('Current Day:', currentDay); // Log current day
   console.log('Current Time:', currentTime); // Log current time
 
-  // Check if it's Monday to Friday (1-5) and between 9 AM to 5 PM
+  // Checking if it's Monday to Friday (1-5) and between 9 AM to 5 PM
   if (currentDay >= 1 && currentDay <= 5 && currentTime >= 9 && currentTime <= 17) {
     return next(); // Proceed to the next middleware or route handler
   } else {
